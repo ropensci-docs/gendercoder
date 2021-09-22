@@ -1,0 +1,12 @@
+{
+  "commit": {
+    "commit": "3433bf1a29c0eea9ead0e55197cab44e9eb30df9",
+    "author": "Emily Kothe <pc.miss@gmail.com>",
+    "time": "2021-05-25 04:06:57",
+    "files": 5,
+    "merge": true,
+    "message": "Merge pull request #42 from juliasilge/typos-from-review\n\nEdits/typos/consistency in README, vignette, docs"
+  },
+  "repo": "https://github.com/ropenscilabs/gendercoder",
+  "pkg": "gendercoder"
+}

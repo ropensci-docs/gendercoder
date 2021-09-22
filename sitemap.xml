@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/index.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/broad.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/gendercoder.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/gendercoder_app.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/narrow.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/recode_gender.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/sample.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/reference/which_is_na.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/gendercoder/articles/rationale.html</loc>
+  </url>
+</urlset>
