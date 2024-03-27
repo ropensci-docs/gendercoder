@@ -1,0 +1,11 @@
+pandoc: 2.16.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  a01_rationale: a01_rationale.html
+  a02_add_dictionary: a02_add_dictionary.html
+last_built: 2024-03-27T07:13Z
+urls:
+  reference: https://docs.ropensci.org/gendercoder/reference
+  article: https://docs.ropensci.org/gendercoder/articles
+
