@@ -1,0 +1,13 @@
+{
+  "commit": {
+    "commit": "b1722e4542e043e7c6c74fa7bc32681508028f11",
+    "author": "Yaoxiang Li <liyaoxiang@outlook.com>",
+    "time": "2026-08-30T23:41:23Z",
+    "files": 2,
+    "merge": false,
+    "message": "Fix vignette link\n"
+  },
+  "repo": "https://github.com/ropensci/gendercoder",
+  "pkg": "gendercoder",
+  "time": "2026-08-31T00:45:54Z"
+}
