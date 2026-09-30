@@ -1,0 +1,148 @@
+# Adding to the dictionary
+
+## Outline
+
+While the `gendercoder` dictionaries aim to be as comprehensive as
+possible, it is inevitable that new typos and variations will occur in
+wild data. Moreover, at present, the dictionaries are limited to data
+the authors have had access to which has been collected in English. As
+such, if you are collecting data, you will at some point want to add to
+or create your own dictionaries (and if so, we strongly encourage
+contributions either as [a pull request via
+GitHub](https://github.com/ropensci/gendercoder), or by [raising an
+issue](https://github.com/ropensci/gendercoder/issues/new) so the team
+can help).
+
+## Adding to the dictionary
+
+Let’s say I have free-text gender data, but some of it is not in
+English.
+
+``` r
+
+library(gendercoder)
+df
+#>   gender
+#> 1   male
+#> 2   enby
+#> 3   womn
+#> 4   mlae
+#> 5   mann
+#> 6   frau
+#> 7  femme
+#> 8  homme
+#> 9    nin
+```
+
+I can create a new dictionary by creating a named vector, where the
+names are the raw, uncoded values, and the values are the desired
+outputs. This can then be used as the dictionary in the
+[`recode_gender()`](https://docs.ropensci.org/gendercoder/reference/recode_gender.md)
+function.
+
+``` r
+
+new_dictionary <- c(
+  mann = "man", 
+  frau = "woman", 
+  femme = "woman", 
+  homme = "man", 
+  nin = "man")
+
+new_dictionary_df <- df
+new_dictionary_df$recoded_gender <- recode_gender(
+  df$gender,
+  dictionary = new_dictionary,
+  retain_unmatched = TRUE
+)
+#> Results not matched from the dictionary have been filled with the user inputted values
+new_dictionary_df
+#>   gender recoded_gender
+#> 1   male           male
+#> 2   enby           enby
+#> 3   womn           womn
+#> 4   mlae           mlae
+#> 5   mann            man
+#> 6   frau          woman
+#> 7  femme          woman
+#> 8  homme            man
+#> 9    nin            man
+```
+
+However, as you can see using just this new dictionary leaves a number
+of responses uncoded that the built-in dictionaries could handle. As the
+dictionaries are just vectors, we can simply concatenate these to use
+both at the same time.
+
+We can do this in-line…
+
+``` r
+
+inline_df <- df
+inline_df$recoded_gender <- recode_gender(
+  df$gender,
+  dictionary = c(manylevels_en, new_dictionary),
+  retain_unmatched = TRUE
+)
+inline_df
+#>   gender recoded_gender
+#> 1   male            man
+#> 2   enby     non-binary
+#> 3   womn          woman
+#> 4   mlae            man
+#> 5   mann            man
+#> 6   frau          woman
+#> 7  femme          woman
+#> 8  homme            man
+#> 9    nin            man
+```
+
+Or otherwise we can create a new dictionary and call that later, useful
+if you might want to save an augmented dictionary for later use or for
+contributing to the package.
+
+``` r
+
+manylevels_plus <-  c(manylevels_en, new_dictionary)
+
+stepped_df <- df
+stepped_df$recoded_gender <- recode_gender(
+  df$gender,
+  dictionary = manylevels_plus,
+  retain_unmatched = TRUE
+)
+stepped_df
+#>   gender recoded_gender
+#> 1   male            man
+#> 2   enby     non-binary
+#> 3   womn          woman
+#> 4   mlae            man
+#> 5   mann            man
+#> 6   frau          woman
+#> 7  femme          woman
+#> 8  homme            man
+#> 9    nin            man
+```
+
+## Making it official
+
+Let’s say you are happy with your `manylevels_plus` dictionary and think
+it should be part of the `manylevels_en` dictionary in the package. All
+you need to do is [fork the gendercoder
+repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo),
+[clone it to your local
+device](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository),
+and then rename your vector and use the
+[`usethis::use_data()`](https://usethis.r-lib.org/reference/use_data.html)
+function to overwrite the `manylevels_en` dictionary as shown below.
+
+``` r
+
+manylevels_en <-  manylevels_plus
+usethis::use_data(manylevels_en, overwrite = TRUE)
+```
+
+Once you’ve pushed the changes to your fork, you can [make a pull
+request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+Please tell us what you’re adding so we know what to look out for and
+how to test it.
